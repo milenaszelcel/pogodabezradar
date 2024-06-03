@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:pogodabezradar/env/env.dart';
-
-import 'package:http/http.dart' as http;
-
-Future<http.Response> fetchAlbum() async {
-  return await http.get(Uri.parse(Env.url));
-}
+import 'package:flutter/widgets.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            color: Colors.purple[100],
+            child: const Text(
+              "Praszka aktualnie ",
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
