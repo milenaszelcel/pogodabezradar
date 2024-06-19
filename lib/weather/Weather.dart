@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:pogodabezradar/weatherDetails.dart';
+import 'package:pogodabezradar/weather/weatherDetails.dart';
 
 class Weather {
   final double temperature;
