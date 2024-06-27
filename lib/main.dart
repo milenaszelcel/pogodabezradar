@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pogodabezradar/pages/HomePage.dart';
 import 'package:pogodabezradar/pages/SearchPage.dart';
 
-void main() {
+Future<void> main() async {
+  await Hive.initFlutter();
+
   runApp(const MaterialApp(home: MyApp()));
 }
 
@@ -15,7 +18,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int currentPageIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

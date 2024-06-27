@@ -5,8 +5,9 @@ import 'package:pogodabezradar/weather/Weather.dart';
 import 'package:pogodabezradar/env/env.dart';
 
 class WeatherService {
-  Future<Weather> getWeather() async {
-    final response = await http.get(Uri.parse(Env.url));
+  Future<Weather> getWeather(latitude, longitude) async {
+    final response = await http.get(Uri.parse(
+        'https://api.open-meteo.com/v1/forecast?latitude=$latitude&longitude=$longitude&current=temperature_2m,weather_code&hourly=temperature_2m'));
     if (response.statusCode == 200) {
       var body = response.body;
       return Weather.fromJson(jsonDecode(body));
