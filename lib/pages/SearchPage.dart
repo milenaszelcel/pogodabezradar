@@ -3,7 +3,9 @@ import 'package:hive/hive.dart';
 import 'package:pogodabezradar/location/LocationService.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  final VoidCallback navigateToHomePage;
+
+  const SearchPage({super.key, required this.navigateToHomePage});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -29,13 +31,15 @@ class _SearchPageState extends State<SearchPage> {
       try {
         final locationService = await _locationServiceFuture;
         await locationService.getLocationAndSave(locationController.text);
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Lokalizacja zapisana pomyślnie")),
-        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text("Lokalizacja zapisana pomyślnie"),
+          onVisible: () {
+            widget.navigateToHomePage();
+          },
+        ));
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Błąd: ${e.toString()}")),
+          const SnackBar(content: Text("Nie znaleziono lokalizacji.")),
         );
       }
     }
@@ -55,22 +59,51 @@ class _SearchPageState extends State<SearchPage> {
       body: Form(
         key: _formKey,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextFormField(
-              controller: locationController,
-              decoration: const InputDecoration(
-                hintText: 'Wpisz lokalizacje',
-                filled: true,
-                fillColor: Colors.white,
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Proszę wpisać lokalizację';
-                }
-                return null;
-              },
+            Container(
+                margin: const EdgeInsets.all(15.0),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                child: TextFormField(
+                  controller: locationController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2.0)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 1.0)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 1.0)),
+                    contentPadding: const EdgeInsets.all(15.0),
+                    hintText: 'Wpisz lokalizacje',
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Proszę wpisać lokalizację';
+                    }
+                    return null;
+                  },
+                )),
+            ElevatedButton(
+              onPressed: onPressed,
+              style: ElevatedButton.styleFrom(
+                  minimumSize: Size(300, 15),
+                  foregroundColor: Colors.blue,
+                  padding: const EdgeInsets.all(15.0),
+                  backgroundColor: Colors.white,
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                  )),
+              child: const Text("Szukaj"),
             ),
-            ElevatedButton(onPressed: onPressed, child: const Text("Szukaj")),
           ],
         ),
       ),

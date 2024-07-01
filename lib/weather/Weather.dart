@@ -7,12 +7,13 @@ class Weather {
   final double temperature;
   final List<HourlyWeather> hourlyWeather;
   final dynamic weatherDescription;
+  final bool isDay;
 
-  const Weather({
-    required this.temperature,
-    required this.hourlyWeather,
-    required this.weatherDescription,
-  });
+  const Weather(
+      {required this.temperature,
+      required this.hourlyWeather,
+      required this.weatherDescription,
+      required this.isDay});
 
   factory Weather.fromJson(Map<String, dynamic> json) {
     double temperature = json['current']['temperature_2m'];
@@ -21,6 +22,7 @@ class Weather {
         List<double>.from(json['hourly']['temperature_2m']);
     String code = json['current']['weather_code'].toString();
     var weatherDescription = getWeatherData(code);
+    bool isDay = json['current']['is_day'] == "1" ? true : false;
     List<HourlyWeather> hourlyWeather = List<HourlyWeather>.generate(
       times.length,
       (index) => HourlyWeather(
@@ -30,10 +32,10 @@ class Weather {
     );
 
     return Weather(
-      temperature: temperature,
-      hourlyWeather: hourlyWeather,
-      weatherDescription: weatherDescription,
-    );
+        temperature: temperature,
+        hourlyWeather: hourlyWeather,
+        weatherDescription: weatherDescription,
+        isDay: isDay);
   }
 }
 

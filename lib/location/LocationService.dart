@@ -23,7 +23,7 @@ class LocationService {
       location = Location.fromJson(jsonDecode(body));
 
       box.put('location', {
-        'location_name': location.name,
+        'name': location.name,
         'latitude': location.latitude,
         'longitude': location.longitude,
       });

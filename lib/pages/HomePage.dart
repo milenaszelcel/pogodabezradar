@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pogodabezradar/location/Location.dart';
@@ -17,7 +16,8 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   Future<Weather>? futureWeather;
-  Location? location;
+  dynamic location;
+  DateTime current_time = DateTime.now();
 
   @override
   void initState() {
@@ -32,6 +32,7 @@ class _HomepageState extends State<Homepage> {
       setState(() {
         futureWeather = WeatherService()
             .getWeather(location['latitude'], location['longitude']);
+        this.location = location;
       });
     } catch (e) {
       print('Error loading location: $e');
@@ -43,7 +44,6 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       backgroundColor: Colors.blue[200],
       body: Container(
-        alignment: Alignment.center,
         child: futureWeather == null
             ? const CircularProgressIndicator()
             : FutureBuilder<Weather>(
@@ -54,18 +54,20 @@ class _HomepageState extends State<Homepage> {
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   }
-                  ;
                   if (snapshot.hasData) {
                     return Column(
                       children: [
+                        Text(
+                          "${location?["name"]}",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
                         Stack(
                           alignment: AlignmentDirectional.topStart,
                           children: [
-                            // if (location != null)
-                            //   Text(
-                            //     'Location: ${location?['name']}',
-                            //     style: TextStyle(fontSize: 20),
-                            //   ),
                             Text(
                               "${snapshot.data!.temperature.round().toString()}°C",
                               style: const TextStyle(
@@ -76,20 +78,18 @@ class _HomepageState extends State<Homepage> {
                             SizedBox(
                               width: 300,
                               child: Image.asset(
-                                "assets/img/cloudy_sunny.png",
+                                "assets/img/weather_img/cloudy_sunny.png",
                                 width: 186,
                                 height: 186,
                               ),
                             ),
                           ],
                         ),
-                        Text(
-                          "${snapshot.data?.weatherDescription["day"][0]}",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                          ),
-                        ),
+                        Text("${snapshot.data?.weatherDescription["day"][0]}",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 26,
+                            )),
                         Scrollbar(
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -101,11 +101,12 @@ class _HomepageState extends State<Homepage> {
                               child: Row(
                                 children: [
                                   ...snapshot.data!.hourlyWeather
+                                      .where((element) =>
+                                          element.time.isAfter(current_time))
                                       .map((element) {
                                     String formattedTime =
                                         DateFormat.Hm().format(element.time);
-
-                                    return Container(
+                                    return SizedBox(
                                       width: 100,
                                       height: 200,
                                       child: Column(
@@ -121,7 +122,7 @@ class _HomepageState extends State<Homepage> {
                                             textAlign: TextAlign.start,
                                           ),
                                           Image.asset(
-                                            "assets/img/cloudy_sunny.png",
+                                            "assets/img/weather_img/cloudy_sunny.png",
                                             width: 80,
                                             height: 80,
                                           ),

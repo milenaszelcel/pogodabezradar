@@ -1,13 +1,7 @@
 final Map<String, Map<String, Map<String, String>>> weatherData = {
   "0": {
-    "day": {
-      "description": "Słonecznie",
-      "image": "http://openweathermap.org/img/wn/01d@2x.png"
-    },
-    "night": {
-      "description": "Bezchmurnie",
-      "image": "http://openweathermap.org/img/wn/01n@2x.png"
-    }
+    "day": {"description": "Słonecznie", "image": "sunny.png"},
+    "night": {"description": "Bezchmurnie", "image": "night.png"}
   },
   "1": {
     "day": {
@@ -22,7 +16,7 @@ final Map<String, Map<String, Map<String, String>>> weatherData = {
   "2": {
     "day": {
       "description": "Częściowe zachmurzenie",
-      "image": "http://openweathermap.org/img/wn/02d@2x.png"
+      "image": "cloudy_sunny.png"
     },
     "night": {
       "description": "Częściowe zachmurzenie",
@@ -30,10 +24,7 @@ final Map<String, Map<String, Map<String, String>>> weatherData = {
     }
   },
   "3": {
-    "day": {
-      "description": "Zachmurzenie",
-      "image": "http://openweathermap.org/img/wn/03d@2x.png"
-    },
+    "day": {"description": "Zachmurzenie", "image": "cloudy.png"},
     "night": {
       "description": "Zachmurzenie",
       "image": "http://openweathermap.org/img/wn/03n@2x.png"
