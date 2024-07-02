@@ -17,7 +17,7 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   Future<Weather>? futureWeather;
   dynamic location;
-  DateTime current_time = DateTime.now();
+  DateTime currentTime = DateTime.now();
 
   @override
   void initState() {
@@ -50,7 +50,7 @@ class _HomepageState extends State<Homepage> {
                 future: futureWeather,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   }
@@ -78,14 +78,16 @@ class _HomepageState extends State<Homepage> {
                             SizedBox(
                               width: 300,
                               child: Image.asset(
-                                "assets/img/weather_img/cloudy_sunny.png",
+                                snapshot.data?.weatherDescription[
+                                    snapshot.data?.isDayOrNight][1],
                                 width: 186,
                                 height: 186,
                               ),
                             ),
                           ],
                         ),
-                        Text("${snapshot.data?.weatherDescription["day"][0]}",
+                        Text(
+                            "${snapshot.data?.weatherDescription[snapshot.data?.isDayOrNight][0]}",
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 26,
@@ -102,7 +104,7 @@ class _HomepageState extends State<Homepage> {
                                 children: [
                                   ...snapshot.data!.hourlyWeather
                                       .where((element) =>
-                                          element.time.isAfter(current_time))
+                                          element.time.isAfter(currentTime))
                                       .map((element) {
                                     String formattedTime =
                                         DateFormat.Hm().format(element.time);
@@ -122,7 +124,8 @@ class _HomepageState extends State<Homepage> {
                                             textAlign: TextAlign.start,
                                           ),
                                           Image.asset(
-                                            "assets/img/weather_img/cloudy_sunny.png",
+                                            element.weatherImage[
+                                                element.isDayOrNight][1],
                                             width: 80,
                                             height: 80,
                                           ),

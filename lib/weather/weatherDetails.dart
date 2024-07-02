@@ -1,33 +1,42 @@
 final Map<String, Map<String, Map<String, String>>> weatherData = {
   "0": {
-    "day": {"description": "Słonecznie", "image": "sunny.png"},
-    "night": {"description": "Bezchmurnie", "image": "night.png"}
+    "day": {
+      "description": "Słonecznie",
+      "image": "assets/img/weather_img/sunny.png"
+    },
+    "night": {
+      "description": "Bezchmurnie",
+      "image": "assets/img/weather_img/night.png"
+    }
   },
   "1": {
     "day": {
       "description": "Głównie słonecznie",
-      "image": "http://openweathermap.org/img/wn/01d@2x.png"
+      "image": "assets/img/weather_img/cloudy_sunny.png"
     },
     "night": {
       "description": "Głównie bezchmurnie",
-      "image": "http://openweathermap.org/img/wn/01n@2x.png"
+      "image": "assets/img/weather_img/cloudy_night.png"
     }
   },
   "2": {
     "day": {
       "description": "Częściowe zachmurzenie",
-      "image": "cloudy_sunny.png"
+      "image": "assets/img/weather_img/cloudy_sunny.png"
     },
     "night": {
       "description": "Częściowe zachmurzenie",
-      "image": "http://openweathermap.org/img/wn/02n@2x.png"
+      "image": "assets/img/weather_img/cloudy_night.png"
     }
   },
   "3": {
-    "day": {"description": "Zachmurzenie", "image": "cloudy.png"},
+    "day": {
+      "description": "Zachmurzenie",
+      "image": "assets/img/weather_img/cloudy.png"
+    },
     "night": {
       "description": "Zachmurzenie",
-      "image": "http://openweathermap.org/img/wn/03n@2x.png"
+      "image": "assets/img/weather_img/cloudy.png"
     }
   },
   "45": {
@@ -103,31 +112,31 @@ final Map<String, Map<String, Map<String, String>>> weatherData = {
   "61": {
     "day": {
       "description": "Lekki deszcz",
-      "image": "http://openweathermap.org/img/wn/10d@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     },
     "night": {
       "description": "Lekki deszcz",
-      "image": "http://openweathermap.org/img/wn/10n@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     }
   },
   "63": {
     "day": {
       "description": "Deszcz",
-      "image": "http://openweathermap.org/img/wn/10d@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     },
     "night": {
       "description": "Deszcz",
-      "image": "http://openweathermap.org/img/wn/10n@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     }
   },
   "65": {
     "day": {
       "description": "Mocny deszcz",
-      "image": "http://openweathermap.org/img/wn/10d@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     },
     "night": {
       "description": "Mocny deszcz",
-      "image": "http://openweathermap.org/img/wn/10n@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     }
   },
   "66": {
@@ -193,31 +202,31 @@ final Map<String, Map<String, Map<String, String>>> weatherData = {
   "80": {
     "day": {
       "description": "Lekkie opady deszczu",
-      "image": "http://openweathermap.org/img/wn/09d@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     },
     "night": {
       "description": "Lekkie opady deszczu",
-      "image": "http://openweathermap.org/img/wn/09n@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     }
   },
   "81": {
     "day": {
       "description": "Opady deszczu",
-      "image": "http://openweathermap.org/img/wn/09d@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     },
     "night": {
       "description": "Opady deszczu",
-      "image": "http://openweathermap.org/img/wn/09n@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     }
   },
   "82": {
     "day": {
       "description": "Silne opady deszczu",
-      "image": "http://openweathermap.org/img/wn/09d@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     },
     "night": {
       "description": "Silne opady deszczu",
-      "image": "http://openweathermap.org/img/wn/09n@2x.png"
+      "image": "assets/img/weather_img/rainy.png"
     }
   },
   "85": {
