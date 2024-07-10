@@ -252,31 +252,31 @@ final Map<String, Map<String, Map<String, String>>> weatherData = {
   "95": {
     "day": {
       "description": "Burza z piorunami",
-      "image": "http://openweathermap.org/img/wn/11d@2x.png"
+      "image": "assets/img/weather_img/thunder.png"
     },
     "night": {
       "description": "Burza z piorunami",
-      "image": "http://openweathermap.org/img/wn/11n@2x.png"
+      "image": "assets/img/weather_img/thunder.png"
     }
   },
   "96": {
     "day": {
       "description": "Lekkie burze z gradem",
-      "image": "http://openweathermap.org/img/wn/11d@2x.png"
+      "image": "assets/img/weather_img/thunder.png"
     },
     "night": {
       "description": "Lekkie burze z gradem",
-      "image": "http://openweathermap.org/img/wn/11n@2x.png"
+      "image": "assets/img/weather_img/thunder.png"
     }
   },
   "99": {
     "day": {
       "description": "Burza z gradem",
-      "image": "http://openweathermap.org/img/wn/11d@2x.png"
+      "image": "assets/img/weather_img/thunder.png"
     },
     "night": {
       "description": "Burza z gradem",
-      "image": "http://openweathermap.org/img/wn/11n@2x.png"
+      "image": "assets/img/weather_img/thunder.png"
     }
   }
 };
