@@ -40,24 +40,12 @@ final Map<String, Map<String, Map<String, String>>> weatherData = {
     }
   },
   "45": {
-    "day": {
-      "description": "Mgła",
-      "image": "http://openweathermap.org/img/wn/50d@2x.png"
-    },
-    "night": {
-      "description": "Mgła",
-      "image": "http://openweathermap.org/img/wn/50n@2x.png"
-    }
+    "day": {"description": "Mgła", "image": "assets/img/weather_img/mist.png"},
+    "night": {"description": "Mgła", "image": "assets/img/weather_img/mist.png"}
   },
   "48": {
-    "day": {
-      "description": "Mgła",
-      "image": "http://openweathermap.org/img/wn/50d@2x.png"
-    },
-    "night": {
-      "description": "Mgła",
-      "image": "http://openweathermap.org/img/wn/50n@2x.png"
-    }
+    "day": {"description": "Mgła", "image": "assets/img/weather_img/mist.png"},
+    "night": {"description": "Mgła", "image": "assets/img/weather_img/mist.png"}
   },
   "51": {
     "day": {

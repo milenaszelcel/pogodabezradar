@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pogodabezradar/components/OneHourBox.dart';
+import 'package:pogodabezradar/components/HourlyWeather/HourlyWeatherBox.dart';
 import 'package:pogodabezradar/weather/Weather.dart';
+import 'package:pogodabezradar/weather/WeatherDataModels/HourlyWeatherModel.dart';
 
 class Hourlyweather extends StatelessWidget {
   final Weather? data;
   final DateTime currentTime = DateTime.now();
 
   Hourlyweather({super.key, required this.data});
+
+  get temperature => null;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +22,7 @@ class Hourlyweather extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
+          margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
           child: Row(
             children: data!.hourlyWeather.entries.map<Widget>((entry) {
               String label = entry.key;
@@ -32,17 +36,18 @@ class Hourlyweather extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 30),
-                      child: Text(
-                        label,
-                        style: TextStyle(color: Colors.grey[800], fontSize: 16),
-                      ),
+                    padding: const EdgeInsets.only(top: 10, left: 20),
+                    child: Text(
+                      label,
+                      style: TextStyle(color: Colors.blue[600], fontSize: 18),
                     ),
                   ),
                   Row(
                     children: filteredWeatherList.map<Widget>((element) {
-                      return OneHourbox(element: element);
+                      String formattedTime =
+                          DateFormat.Hm().format(element.time);
+                      return HourlyWeatherBox(
+                          element: element, formattedTime: formattedTime);
                     }).toList(),
                   ),
                 ],

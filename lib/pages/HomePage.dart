@@ -2,8 +2,9 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pogodabezradar/components/DailyWeather.dart';
-import 'package:pogodabezradar/components/HourlyWeather.dart';
+import 'package:pogodabezradar/components/DailyWeather/DailyWeather.dart';
+import 'package:pogodabezradar/components/HourlyWeather/HourlyWeather.dart';
+import 'package:pogodabezradar/components/Wind/WindBox.dart';
 import 'package:pogodabezradar/location/Location.dart';
 import 'package:pogodabezradar/components/CurrentWeather.dart';
 import 'package:pogodabezradar/location/LocationService.dart';
@@ -61,7 +62,8 @@ class _HomepageState extends State<Homepage> {
                       children: [
                         CurrentWeather(data: snapshot.data, location: location),
                         Hourlyweather(data: snapshot.data),
-                        DailyWeatherBox(data: snapshot.data)
+                        DailyWeathers(data: snapshot.data),
+                        WindBox(data: snapshot.data?.wind)
                       ],
                     );
                   } else if (snapshot.hasError) {

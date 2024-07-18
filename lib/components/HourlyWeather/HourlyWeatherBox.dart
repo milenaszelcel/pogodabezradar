@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pogodabezradar/weather/Weather.dart';
 
-class OneHourbox extends StatelessWidget {
-  HourlyWeather element;
+class HourlyWeatherBox extends StatelessWidget {
+  dynamic element;
+  String formattedTime;
 
-  OneHourbox({super.key, required this.element});
+  HourlyWeatherBox(
+      {super.key, required this.element, required this.formattedTime});
 
   @override
   Widget build(BuildContext context) {
-    String formattedTime = DateFormat.Hm().format(element.time);
     return SizedBox(
       width: 100,
       height: 180,
@@ -17,6 +18,7 @@ class OneHourbox extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Divider(color: Colors.blue[100]),
           Text(
             "${element.temperature.round()}°C",
             style: const TextStyle(fontSize: 20),

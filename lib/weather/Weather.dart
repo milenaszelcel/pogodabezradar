@@ -3,7 +3,12 @@ import 'dart:ffi';
 
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:pogodabezradar/weather/WeatherDataModels/HourlyWeatherModel.dart';
+import 'package:pogodabezradar/weather/WeatherDataModels/WeatherDescription.dart';
+import 'package:pogodabezradar/weather/WeatherDataModels/Wind.dart';
 import 'package:pogodabezradar/weather/weatherDetails.dart';
+
+import 'WeatherDataModels/DailyWeather.dart';
 
 class Weather {
   final double temperature;
@@ -11,20 +16,26 @@ class Weather {
   final dynamic weatherDescription;
   final String isDayOrNight;
   final List<DailyWeather> dailyWeather;
+  final Wind wind;
 
   const Weather(
       {required this.temperature,
       required this.hourlyWeather,
       required this.weatherDescription,
       required this.isDayOrNight,
-      required this.dailyWeather});
+      required this.dailyWeather,
+      required this.wind});
 
   factory Weather.fromJson(Map<String, dynamic> json) {
     //Current weather
     double temperature = json['current']['temperature_2m'];
     String code = json['current']['weather_code'].toString();
-    var weatherDescription = getWeatherData(code);
+    dynamic weatherDescription = getWeatherData(code);
     String isDayOrNight = json['current']['is_day'] == 1 ? "day" : "night";
+    //Wind
+    double windSpeed = json['current']['wind_speed_10m'];
+    double windGusts = json['current']['wind_gusts_10m'];
+    Wind wind = Wind(windGusts: windGusts, windSpeed: windSpeed);
 
     //HourlyWeather
     List<String> times = List<String>.from(json['hourly']['time']);
@@ -69,32 +80,14 @@ class Weather {
             weatherImage: getWeatherData(dailyCodes[index].toString())));
 
     return Weather(
-        temperature: temperature,
-        hourlyWeather: labeledWeather,
-        weatherDescription: weatherDescription,
-        isDayOrNight: isDayOrNight,
-        dailyWeather: dailyWeather);
+      temperature: temperature,
+      hourlyWeather: labeledWeather,
+      weatherDescription: weatherDescription,
+      isDayOrNight: isDayOrNight,
+      dailyWeather: dailyWeather,
+      wind: wind,
+    );
   }
-}
-
-class HourlyWeather {
-  final DateTime time;
-  final double temperature;
-  final dynamic weatherImage;
-  final String isDayOrNight;
-
-  const HourlyWeather(
-      {required this.time,
-      required this.temperature,
-      required this.weatherImage,
-      required this.isDayOrNight});
-}
-
-class weatherDescription {
-  final String description;
-  final String image;
-
-  const weatherDescription({required this.description, required this.image});
 }
 
 getWeatherData(String code) {
@@ -142,18 +135,4 @@ getDataLabel(DateTime date) {
     label = "other";
   }
   return label;
-}
-
-class DailyWeather {
-  final DateTime date;
-  final double maxTemperature;
-  final double minTemperature;
-  final String weatherImage;
-
-  DailyWeather({
-    required this.date,
-    required this.maxTemperature,
-    required this.minTemperature,
-    required this.weatherImage,
-  });
 }
