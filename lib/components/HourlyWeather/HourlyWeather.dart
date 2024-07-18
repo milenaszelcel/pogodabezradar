@@ -32,26 +32,30 @@ class Hourlyweather extends StatelessWidget {
               List<HourlyWeather> filteredWeatherList = weatherList
                   .where((element) => element.time.isAfter(currentTime))
                   .toList();
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(top: 10, left: 20),
-                    child: Text(
-                      label,
-                      style: TextStyle(color: Colors.blue[600], fontSize: 18),
+              if (filteredWeatherList.isNotEmpty) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10, left: 20),
+                      child: Text(
+                        label,
+                        style: TextStyle(color: Colors.blue[600], fontSize: 16),
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: filteredWeatherList.map<Widget>((element) {
-                      String formattedTime =
-                          DateFormat.Hm().format(element.time);
-                      return HourlyWeatherBox(
-                          element: element, formattedTime: formattedTime);
-                    }).toList(),
-                  ),
-                ],
-              );
+                    Row(
+                      children: filteredWeatherList.map<Widget>((element) {
+                        String formattedTime =
+                            DateFormat.Hm().format(element.time);
+                        return HourlyWeatherBox(
+                            element: element, formattedTime: formattedTime);
+                      }).toList(),
+                    ),
+                  ],
+                );
+              } else {
+                return SizedBox.shrink();
+              }
             }).toList(),
           ),
         ),

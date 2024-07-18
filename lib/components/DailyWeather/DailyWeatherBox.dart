@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'DailyWeather.dart';
 
 class DailyWeatherBox extends StatelessWidget {
   final dynamic element;
   final String formattedTime;
+  
 
   const DailyWeatherBox(
       {super.key, required this.element, required this.formattedTime});
 
   @override
   Widget build(BuildContext context) {
+    String dayAndMonth = DateFormat('MMMd', 'pl_PL').format(element.date);
     return SizedBox(
       width: 100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text("${dayAndMonth}"),
           Divider(color: Colors.blue[100]),
           Text(
             formattedTime,
@@ -31,7 +35,7 @@ class DailyWeatherBox extends StatelessWidget {
           Text(
             "${element.maxTemperature.round()}°C",
             style: const TextStyle(
-                fontSize: 20, color: Color.fromARGB(255, 252, 127, 55)),
+                fontSize: 20, color: Color.fromARGB(255, 252, 94, 55)),
             textAlign: TextAlign.start,
           ),
           Text(

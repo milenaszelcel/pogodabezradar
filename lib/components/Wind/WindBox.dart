@@ -34,22 +34,24 @@ class WindBox extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Padding(
+                     
+                     
+                      SizedBox(
+                        child: Image.asset(
+                          'assets/img/weather_img/wind.png',
+                          width: 120.0,
+                        ),
+                      ),
+                       SizedBox(
+                        width: 50,
+                      ),
+                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
                         child: Text(
                           "${data.windSpeed.toString()}km/h",
                           style: const TextStyle(
                             fontSize: 24,
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 90,
-                      ),
-                      SizedBox(
-                        child: Image.asset(
-                          'assets/img/weather_img/wind.png',
-                          width: 120.0,
                         ),
                       ),
                     ],
@@ -60,7 +62,7 @@ class WindBox extends StatelessWidget {
                 padding: EdgeInsets.all(10.0),
                 child: Text(
                   "Porywy wiatru do ${data.windGusts.toString()}km/h",
-                  style: TextStyle(color: Color.fromARGB(255, 252, 127, 55)),
+                  style: TextStyle(color: Color.fromARGB(255, 252, 94, 55)),
                 ),
               )
             ],

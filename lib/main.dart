@@ -40,12 +40,13 @@ class _MyAppState extends State<MyApp> {
             home: Scaffold(
           appBar: AppBar(
             title: Container(
-              alignment: AlignmentDirectional.center,
+              
               child: Stack(
                 alignment: AlignmentDirectional.center,
                 children: [
-                  const Align(
-                    alignment: Alignment.centerLeft,
+                  
+                  const Positioned(
+                    left: 25,
                     child: Text(
                       "Pogoda",
                       style: TextStyle(
@@ -66,8 +67,8 @@ class _MyAppState extends State<MyApp> {
                           width: 70, colorBlendMode: BlendMode.multiply),
                     ),
                   ),
-                  const Align(
-                    alignment: Alignment.centerRight,
+                  const Positioned(
+                    right: 50,
                     child: Text("Radar",
                         style: TextStyle(
                           color: Colors.white,
@@ -81,23 +82,28 @@ class _MyAppState extends State<MyApp> {
             backgroundColor: Colors.blue[300],
             toolbarHeight: 80,
           ),
-          bottomNavigationBar: NavigationBar(
-            onDestinationSelected: (int index) {
+          bottomNavigationBar: BottomNavigationBar(
+            
+            onTap: (int index) {
               setState(() {
                 _currentPageIndex = index;
               });
             },
             backgroundColor: Colors.blue[300],
-            selectedIndex: _currentPageIndex,
-            indicatorColor: Colors.white,
-            destinations: const <Widget>[
-              NavigationDestination(
-                icon: Icon(Icons.home),
-                label: 'Strona Główna',
+            currentIndex: _currentPageIndex,
+            
+            
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Container( width: 60.0, height: 30.0,decoration:  BoxDecoration(color: _currentPageIndex == 0 ? Colors.white : Colors.transparent, borderRadius: BorderRadius.circular(20.0)),
+                  child:  Icon(Icons.home, color: _currentPageIndex == 0 ? Colors.blue[300] : Colors.white)),
+                label: '',
+                
               ),
-              NavigationDestination(
-                icon: Icon(Icons.search),
-                label: 'Szukaj',
+              BottomNavigationBarItem(
+                icon:Container( width: 60.0, height: 30.0,decoration:  BoxDecoration(color: _currentPageIndex == 1 ? Colors.white : Colors.transparent, borderRadius: BorderRadius.circular(20.0)),
+                  child:  Icon(Icons.search, color: _currentPageIndex == 1 ? Colors.blue[300] : Colors.white)),
+                label: '',
               ),
             ],
           ),
