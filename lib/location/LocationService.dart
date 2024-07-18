@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
-import 'package:pogodabezradar/env/env.dart';
 import 'package:pogodabezradar/location/Location.dart';
 
 class LocationService {
